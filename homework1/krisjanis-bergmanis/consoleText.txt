@@ -1,0 +1,148 @@
+Started by user krisjanis
+Obtained Jenkinsfile from git https://gitlab.venta.lv/s3_bergma_k/counter2
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /Users/kris/.jenkins/workspace/Counter2
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential 2e22dd99-bf4d-4459-a71d-8a39f94a199a
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://gitlab.venta.lv/s3_bergma_k/counter2 # timeout=10
+Fetching upstream changes from https://gitlab.venta.lv/s3_bergma_k/counter2
+ > git --version # timeout=10
+ > git --version # 'git version 2.21.1 (Apple Git-122.3)'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://gitlab.venta.lv/s3_bergma_k/counter2 +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 220c072dbd9992cc15a17c9e6c3156a23d662c09 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 220c072dbd9992cc15a17c9e6c3156a23d662c09 # timeout=10
+Commit message: "add debug lines to jenkins file"
+ > git rev-list --no-walk 2a3f56911c008afea191e25d5dffaa7a789de427 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Unit Tests)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ mvn --version
+Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)
+Maven home: /Users/kris/.jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.0
+Java version: 1.8.0_231, vendor: Oracle Corporation, runtime: /Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre
+Default locale: en_LV, platform encoding: UTF-8
+OS name: "mac os x", version: "10.15.7", arch: "x86_64", family: "mac"
+[Pipeline] sh
++ mvn clean test
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.example:counter2:jar:1.0-SNAPSHOT
+[WARNING] 'dependencies.dependency.version' for org.junit.jupiter:junit-jupiter:jar is either LATEST or RELEASE (both of them are being deprecated) @ line 32, column 22
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ------------------------< org.example:counter2 >------------------------
+[INFO] Building counter2 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ counter2 ---
+[INFO] Deleting /Users/kris/.jenkins/workspace/Counter2/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ counter2 ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/kris/.jenkins/workspace/Counter2/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ counter2 ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 2 source files to /Users/kris/.jenkins/workspace/Counter2/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ counter2 ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/kris/.jenkins/workspace/Counter2/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ counter2 ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to /Users/kris/.jenkins/workspace/Counter2/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ counter2 ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.323 s
+[INFO] Finished at: 2020-10-12T21:51:44+03:00
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (compile)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
+++ pwd
++ echo 'This is start /Users/kris/.jenkins/workspace/Counter2'
+This is start /Users/kris/.jenkins/workspace/Counter2
++ cd ./src/main/java/
+++ pwd
++ echo 'This is /Users/kris/.jenkins/workspace/Counter2/src/main/java'
+This is /Users/kris/.jenkins/workspace/Counter2/src/main/java
++ javac main.java
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (execute)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
+++ pwd
++ echo 'This is start /Users/kris/.jenkins/workspace/Counter2'
+This is start /Users/kris/.jenkins/workspace/Counter2
++ cd ./src/main/java/
+++ pwd
++ echo 'This is /Users/kris/.jenkins/workspace/Counter2/src/main/java'
+This is /Users/kris/.jenkins/workspace/Counter2/src/main/java
++ java Main
+-5
+10
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
